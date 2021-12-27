@@ -7,19 +7,27 @@ import {
   Put,
   Patch,
   Body,
+  Res,
 } from '@nestjs/common';
 import { CreateMovieDTO } from './DTO/create-movie.dto';
 import { UpdateMovieDTO } from './DTO/update-movie.dto';
 import { Movie } from './entities/movie.entity';
 import { MoviesService } from './movies.service';
+import { ApiTags, ApiOperation, ApiCreatedResponse, ApiOkResponse } from "@nestjs/swagger"
 
 @Controller('movies')
+@ApiTags("영화 API")
 export class MoviesController {
     constructor(private readonly moviesService: MoviesService) {}
-
   @Get()
-  getAll(): Movie[] {
-    return this.moviesService.getAll();
+  @ApiOperation({ summary: "전체 영화 데이터 API", description: "GET 요청시 영화 전체 데이터 긁어옴"})
+  @ApiCreatedResponse({ description: "GET 요청시 영화 전체 데이터 긁어옴", type: Movie})
+  @ApiOkResponse({status: 201})
+  async getAll(@Body() requestDto, @Res() res): Promise<Movie> {
+    const user: Movie = {
+      id: 1
+    }
+    return res.status(200).json(user)
   }
 
   @Get('/:id')
