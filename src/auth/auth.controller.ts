@@ -36,22 +36,24 @@ export class AuthController {
       @Body('password') password: string,
       @Res({passthrough: true}) response: Response
   ) {
-      const user = await this.authService.findsOne(email);
+      console.log('email', email);
+      console.log('password', password);
+      const user = await this.authService.findsOne(email, password);
 
       if (!user) {
-          throw new BadRequestException('invalid credentials');
+          return false;
       }
 
       // if (!await bcrypt.compare(password, user.password)) {
       //     throw new BadRequestException('invalid credentials');
       // }
 
-      const jwt = await this.jwtService.signAsync({email: user.email}, {secret: "hawddwadawdaw"});
+    //   const jwt = await this.jwtService.signAsync({email: user.email}, {secret: "hawddwadawdaw"});
 
-      response.cookie('jwt', jwt, {httpOnly: true});
+    //   response.cookie('jwt', jwt, {httpOnly: true});
 
       return {
-          islogin: true
+          user
       };
   }
 
@@ -89,5 +91,29 @@ export class AuthController {
       return {
           isLogout: true
       }
+  }
+  
+  @Post('/buy')
+  buyCoin(@Body() buyCoin: any) {
+    console.log(buyCoin);
+    return this.authService.buyCoin(buyCoin)
+  }
+
+  @Post('/sold')
+  soldCoin(@Body() soldCoin: any) {
+      return this.authService.soldCoin(soldCoin);
+  }
+
+
+  @Post('/save')
+  userSave(@Body() ...userData: any) {
+    return this.authService.usersave(userData);
+  }
+
+
+  @Get('/seungmin')
+  seungmin(@Req() request: Request) {
+    console.log(request);
+    return 'hi seungmin';
   }
 }

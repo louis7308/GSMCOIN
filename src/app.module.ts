@@ -11,6 +11,12 @@ import { UserEntity } from './entities/user.entity';
 import { CoinController } from './coin/coin.controller';
 import { CoinService } from './coin/coin.service';
 import { CoinModule } from './coin/coin.module';
+import { CoinEntity } from './entities/coin.entity';
+import { IssueController } from './issue/issue.controller';
+import { IssueService } from './issue/issue.service';
+import { IssueModule } from './issue/issue.module';
+import { IssueEntity } from './entities/issue.entity';
+
 
 @Module({
   imports: [ConfigModule.forRoot({
@@ -24,9 +30,9 @@ import { CoinModule } from './coin/coin.module';
     password: process.env.DB_PASSWORD,
     database: process.env.DB_DATABASE,
     entities: ["dist/**/*.entity{.ts,.js}"],
-    synchronize: false
+    synchronize: true
   }),
-  TypeOrmModule.forFeature([UserEntity]),
+  TypeOrmModule.forFeature([UserEntity, CoinEntity, IssueEntity]),
   JwtModule.register({
     secret: 'secret',
     signOptions: {expiresIn: '1d'}
@@ -34,8 +40,9 @@ import { CoinModule } from './coin/coin.module';
   MoviesModule,
   UserModule,
   AuthModule,
-  CoinModule],
-  controllers: [AuthController, CoinController],
-  providers: [AuthService, CoinService],
+  CoinModule,
+  IssueModule],
+  controllers: [AuthController, CoinController, IssueController],
+  providers: [AuthService, CoinService, IssueService],
 })
 export class AppModule {}
