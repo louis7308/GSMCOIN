@@ -67,7 +67,8 @@ export class AuthService {
             geonucoin: firstUser.geonucoin,
             manghaessseonghuncoin: firstUser.manghaessseonghuncoin,
             chanwoocoin: firstUser.chanwoocoin,
-            studentcouncilcoin: firstUser.studentcouncilcoin
+            studentcouncilcoin: firstUser.studentcouncilcoin,
+            eunyoungcoin: firstUser.eunyoungcoin
           },
         };
         console.log('1', userData);
@@ -163,7 +164,8 @@ export class AuthService {
         geonucoin: UserJsonData.coinDict.geonucoin,
         manghaessseonghuncoin: UserJsonData.coinDict.manghaessseonghuncoin,
         chanwoocoin: UserJsonData.coinDict.chanwoocoin,
-        studentcouncilcoin: UserJsonData.coinDict.studentcouncilcoin
+        studentcouncilcoin: UserJsonData.coinDict.studentcouncilcoin,
+        eunyoungcoin: UserJsonData.coinDict.eunyoungcoin
       })
       .where('email = :email', { email: UserJsonData.email })
       .execute();

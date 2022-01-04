@@ -16,6 +16,9 @@ import { IssueController } from './issue/issue.controller';
 import { IssueService } from './issue/issue.service';
 import { IssueModule } from './issue/issue.module';
 import { IssueEntity } from './entities/issue.entity';
+import { RankController } from './rank/rank.controller';
+import { RankService } from './rank/rank.service';
+import { RankModule } from './rank/rank.module';
 
 
 @Module({
@@ -41,8 +44,9 @@ import { IssueEntity } from './entities/issue.entity';
   UserModule,
   AuthModule,
   CoinModule,
-  IssueModule],
-  controllers: [AuthController, CoinController, IssueController],
-  providers: [AuthService, CoinService, IssueService],
+  IssueModule,
+  RankModule],
+  controllers: [AuthController, CoinController, IssueController, RankController],
+  providers: [AuthService, CoinService, IssueService, RankService],
 })
 export class AppModule {}

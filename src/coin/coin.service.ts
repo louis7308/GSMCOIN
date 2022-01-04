@@ -43,7 +43,8 @@ let coin = 0;
 // 	]
 // }
 
-let allCoinData = [];
+export let allCoinData: any = [];
+
 
 
 
