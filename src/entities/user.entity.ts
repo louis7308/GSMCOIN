@@ -13,7 +13,7 @@ export class UserEntity {
   @Column()
   password: string;
 
-  @Column({default: 0})
+  @Column({type: 'bigint', default: 0})
   playerMoney: number;
 
   @Column({default: 20})

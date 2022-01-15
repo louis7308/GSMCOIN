@@ -16,12 +16,23 @@ export class IssueService {
     let date = (new Date());
     console.log(date);
     console.log(title, description, tag);
-    this.IssueRepository.save({
-      title: title,
-      description: description,
-      tag: tag,
-      create_at: date
-    })
+    let titleString = JSON.stringify(title);
+    let descriptionString = JSON.stringify(description);
+    let titleJson = JSON.parse(titleString)
+    let descriptionJson = JSON.parse(descriptionString)
+    console.log(titleJson.title.title)
+    try {
+      this.IssueRepository.save({
+        title: titleJson.title.title,
+        description: descriptionJson.description.description,
+        tag: tag,
+        create_at: date
+      })  
+      return true;
+    } catch(e) {
+      return false
+    }
+    
   }
 
   async getAllIssue() {
@@ -101,39 +112,6 @@ export class IssueService {
         return true;
       }});
       console.log('hi2222',result);
-      // console.log('안녕나는 승민이야',allCoinData[i])
-    //   if(allCoinData[i].name === tag) {
-    //     console.log('hi');
-    //     if(status === 1) { // 떡상
-    //       // console.log('민재',allCoinData)
-    //       price = Math.ceil(allCoinData[i].price * psent)
-    //       allCoinData[i].price = allCoinData[i].price + price
-    //         if(getIssueData.id === id) {
-    //           console.log('hi')
-    //           let IssueData = await this.IssueRepository
-    //           .createQueryBuilder()
-    //           .update(IssueEntity)
-    //           .set({ status: 1 })
-    //           .where('id = :id', { id: id })
-    //           .execute();
-    //         }
-            
-    //       console.log('get이슈', getIssueData)
-    //       console.log('22',price);
-    //     }
-    //     else if(status === 2) { // 떡락
-    //       // console.log('민재',allCoinData)
-    //       price = Math.ceil(allCoinData[i].price * psent)
-    //       allCoinData[i].price = allCoinData[i].price - price
-    //       getIssueData.status = 1;
-    //       this.IssueRepository.save(getIssueData)
-    //       console.log('22',price);
-    //     }
-    //   }
-    // console.log(random);
-    // console.log(tag);
-
-    // console.log(getIssueData)
     
   }
 

@@ -32,6 +32,8 @@ export class AuthService {
         .createQueryBuilder('UserEntity')
         .where('email = :email', { email: email })
         .getOne();
+      console.log(firstUser.playerMoney)
+      // let bigMoney = BigInt(firstUser.playerMoney);
       if(firstUser.password == password) {
         const userData = {
           name: firstUser.name,
@@ -130,13 +132,15 @@ export class AuthService {
     console.log('audwlrslbal3', userData[0].userdata)
     let UserStringData = userData[0].userdata;
     let UserJsonData = JSON.parse(UserStringData)
+    console.log('userdata',UserJsonData.playerMoney)
+    let bigMoney = BigInt(UserJsonData.playerMoney)
     console.log(UserJsonData.name);
     let coindata2 = await this.userRepository
       .createQueryBuilder()
       .update(UserEntity)
       .set({
         name: UserJsonData.name,
-        playerMoney: UserJsonData.playerMoney,
+        playerMoney: bigMoney,
         clickMoney: UserJsonData.clickMoney,
         automatcIncome: UserJsonData.automatcIncome,
         typingSpeed: UserJsonData.typingSpeed,
