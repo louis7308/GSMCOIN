@@ -6,9 +6,9 @@ import * as cookieParser from "cookie-parser";
 import { NestExpressApplication } from '@nestjs/platform-express';
 
 
-async function bootstrap() {
-  const app = await NestFactory.create<NestExpressApplication>(AppModule);
-  const hostname = '10.120.74.70'
+async function bootstrap() { // NestExpressApplication
+  const app = await NestFactory.create(AppModule);
+  const hostname = '222.238.250.160'
   app.use(cookieParser()); 
   app.enableCors();
   
