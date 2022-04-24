@@ -49,10 +49,10 @@ export class UserEntity {
   onegradecoin: number;
 
   @Column({default: 0})
-  twograde: number;
+  twogradecoin: number;
 
   @Column({default: 0})
-  threegrade: number;
+  threegradecoin: number;
   
   @Column({default: 0})
   gameclubcoin: number;

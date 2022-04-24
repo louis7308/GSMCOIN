@@ -58,8 +58,6 @@ export class AuthController {
   }
 
   @Get('user')
-  @ApiOperation({ summary: "전체 영화 데이터 API", description: "GET 요청시 영화 전체 데이터 긁어옴"})
-  @ApiCreatedResponse({ description: "GET 요청시 영화 전체 데이터 긁어옴", type: User})
   async user(@Req() request: Request) {
       try {
           const cookie = request.cookies['jwt'];
