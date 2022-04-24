@@ -8,12 +8,8 @@ export class IssueController {
   ) {}
 
   @Post('/write')
-  async postIssue(
-    @Body('title') title: string,
-    @Body('description') description: string,
-    @Body('tag') tag:string
-    ) {
-    return this.issueservice.write(title, description, tag);
+  async postIssue() {
+    return this.issueservice.write();
   }
   
   // 채택된 데이터 전부다

@@ -3,6 +3,7 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { allCoinData } from 'src/coin/coin.service';
 import { IssueEntity } from 'src/entities/issue.entity';
 import {Repository} from "typeorm";
+import { coinTemplate } from "src/util/template"
 
 
 @Injectable()
@@ -12,20 +13,19 @@ export class IssueService {
     @InjectRepository(IssueEntity) private readonly IssueRepository: Repository<IssueEntity>
   ) {}
 
-  async write(title: string, description: string, tag: string) {
+  async write() {
     let date = (new Date());
-    console.log(date);
-    console.log(title, description, tag);
-    let titleString = JSON.stringify(title);
-    let descriptionString = JSON.stringify(description);
-    let titleJson = JSON.parse(titleString)
-    let descriptionJson = JSON.parse(descriptionString)
-    console.log(titleJson.title.title)
+    let i = coinTemplate.length;
+    let random = Math.floor(Math.random() * i)
+    console.log(random);
+    console.log(coinTemplate.length)
+    console.log(coinTemplate[random])
+    // console.log(titleJson.title.title)
     try {
       this.IssueRepository.save({
-        title: titleJson.title.title,
-        description: descriptionJson.description.description,
-        tag: tag,
+        title: coinTemplate[random].title,
+        description: coinTemplate[random].content,
+        tag: coinTemplate[random].tag,
         create_at: date
       })  
       return true;
