@@ -71,11 +71,6 @@ export class AuthController {
           if (!data) {
               throw new UnauthorizedException();
           }
-
-          // const user = await this.authService.findOne({id: data['id']});
-
-          // const {password, ...result} = user;
-
           return {
             isToken: true
           };
@@ -92,28 +87,10 @@ export class AuthController {
           isLogout: true
       }
   }
-  
-  @Post('/buy')
-  buyCoin(@Body() buyCoin: any) {
-    console.log(buyCoin);
-    return this.authService.buyCoin(buyCoin)
-  }
-
-  @Post('/sold')
-  soldCoin(@Body() soldCoin: any) {
-      return this.authService.soldCoin(soldCoin);
-  }
-
 
   @Post('/save')
   userSave(@Body() ...userData: any) {
     return this.authService.usersave(userData);
   }
 
-
-  @Get('/seungmin')
-  seungmin(@Req() request: Request) {
-    console.log(request);
-    return 'hi seungmin';
-  }
 }

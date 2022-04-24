@@ -54,23 +54,16 @@ export class AuthService {
             gram: firstUser.gram,
           },
           coinDict: {
-            kimdongdongcoin: firstUser.kimdongdongcoin,
-            whattodocoin: firstUser.whattodocoin,
+            onegradecoin: firstUser.onegradecoin,
+            twograde: firstUser.twograde,
+            threegrade: firstUser.threegrade,
+            gameclubcoin: firstUser.gameclubcoin,
+            cloudclubcoin: firstUser.cloudclubcoin,
+            securityclubcoin: firstUser.securityclubcoin,
+            roboticsclubcoin: firstUser.roboticsclubcoin,
+            networkclubcoin: firstUser.networkclubcoin,
+            healthcoin: firstUser.healthcoin,
             gsmcoin: firstUser.gsmcoin,
-            choigangmincoin: firstUser.choigangmincoin,
-            gemgaejiyecoin: firstUser.gemgaejiyecoin,
-            hyeonttungcoin: firstUser.hyeonttungcoin,
-            ijuncoin: firstUser.ijuncoin,
-            eunseongcoin: firstUser.eunseongcoin,
-            jjunjjunacoin: firstUser.jjunjjunacoin,
-            sihuncoin: firstUser.sihuncoin,
-            haembeogseungmincoin: firstUser.haembeogseungmincoin,
-            yusiopeucoin: firstUser.yusiopeucoin,
-            geonucoin: firstUser.geonucoin,
-            manghaessseonghuncoin: firstUser.manghaessseonghuncoin,
-            chanwoocoin: firstUser.chanwoocoin,
-            studentcouncilcoin: firstUser.studentcouncilcoin,
-            eunyoungcoin: firstUser.eunyoungcoin
           },
         };
         console.log('1', userData);
@@ -79,50 +72,6 @@ export class AuthService {
       }
     } catch {
       return false;
-    }
-  }
-
-  async buyCoin(buyCoin: any) {
-    console.log('b', buyCoin);
-    let email = buyCoin.email;
-    let coinCount = buyCoin.buyCoin;
-    let checkCoin = buyCoin.whoiscoin;
-    let dbUserData = await this.userRepository.findOne(email);
-    console.log('dbuser', dbUserData);
-    console.log(email);
-    console.log(coinCount);
-    console.log(checkCoin);
-    switch (checkCoin) {
-      case 'kimdongdongcoin':
-        let dbGetCoinCount = dbUserData.kimdongdongcoin;
-        let allCount = coinCount + dbGetCoinCount;
-        let coindata = await this.userRepository
-          .createQueryBuilder()
-          .update(UserEntity)
-          .set({ kimdongdongcoin: allCount })
-          .where('email = :email', { email: email })
-          .execute();
-        console.log(coindata);
-        return {
-          isBuySucc: true,
-        };
-      case 'whattodocoin':
-        let dbGetCoinCount2 = dbUserData.whattodocoin;
-        let allCount2 = coinCount + dbGetCoinCount2;
-        let coindata2 = await this.userRepository
-          .createQueryBuilder()
-          .update(UserEntity)
-          .set({ whattodocoin: allCount2 })
-          .where('email = :email', { email: email })
-          .execute();
-        console.log(coindata2);
-        return {
-          isBuySucc: true,
-        };
-      default:
-        return {
-          isCoinSucc: false,
-        };
     }
   }
 
@@ -153,71 +102,20 @@ export class AuthService {
         gay: UserJsonData.itemDict.gay,
         ekko: UserJsonData.itemDict.ekko,
         gram: UserJsonData.itemDict.gram,
-        kimdongdongcoin: UserJsonData.coinDict.kimdongdongcoin,
-        whattodocoin: UserJsonData.coinDict.whattodocoin,
+        onegradecoin: UserJsonData.coinDict.onegradecoin,
+        twograde: UserJsonData.coinDict.twograde,
+        threegrade: UserJsonData.coinDict.threegrade,
+        gameclubcoin: UserJsonData.coinDict.gameclubcoin,
+        cloudclubcoin: UserJsonData.coinDict.cloudclubcoin,
+        securityclubcoin: UserJsonData.coinDict.securityclubcoin,
+        roboticsclubcoin: UserJsonData.coinDict.roboticsclubcoin,
+        networkclubcoin: UserJsonData.coinDict.networkclubcoin,
+        healthcoin: UserJsonData.coinDict.healthcoin,
         gsmcoin: UserJsonData.coinDict.gsmcoin,
-        choigangmincoin: UserJsonData.coinDict.choigangmincoin,
-        gemgaejiyecoin: UserJsonData.coinDict.gemgaejiyecoin,
-        hyeonttungcoin: UserJsonData.coinDict.hyeonttungcoin,
-        ijuncoin: UserJsonData.coinDict.ijuncoin,
-        eunseongcoin: UserJsonData.coinDict.eunseongcoin,
-        jjunjjunacoin: UserJsonData.coinDict.jjunjjunacoin,
-        sihuncoin: UserJsonData.coinDict.sihuncoin,
-        haembeogseungmincoin: UserJsonData.coinDict.haembeogseungmincoin,
-        yusiopeucoin: UserJsonData.coinDict.yusiopeucoin,
-        geonucoin: UserJsonData.coinDict.geonucoin,
-        manghaessseonghuncoin: UserJsonData.coinDict.manghaessseonghuncoin,
-        chanwoocoin: UserJsonData.coinDict.chanwoocoin,
-        studentcouncilcoin: UserJsonData.coinDict.studentcouncilcoin,
-        eunyoungcoin: UserJsonData.coinDict.eunyoungcoin
       })
       .where('email = :email', { email: UserJsonData.email })
       .execute();
 
       return true;
-  }
-
-  async soldCoin(soldCoin: any) {
-    console.log('soldCoin function', soldCoin);
-    let email = soldCoin.email;
-    let coinCount = soldCoin.soldCoin;
-    let checkCoin = soldCoin.whoiscoin;
-    let dbUserData = await this.userRepository.findOne(email);
-    console.log('dbuser', dbUserData);
-    console.log('email', email);
-    console.log('코인갯수', coinCount);
-    console.log('코인제목', checkCoin);
-    switch (checkCoin) {
-      case 'kimdongdongcoin':
-        let dbGetCoinCount = dbUserData.kimdongdongcoin;
-        let allCount = dbGetCoinCount - coinCount;
-        let coindata = await this.userRepository
-          .createQueryBuilder()
-          .update(UserEntity)
-          .set({ kimdongdongcoin: allCount })
-          .where('email = :email', { email: email })
-          .execute();
-        console.log(coindata);
-        return {
-          isSoldSucc: true,
-        };
-      case 'whattodocoin':
-        let dbGetCoinCount2 = dbUserData.whattodocoin;
-        let allCount2 = dbGetCoinCount2 - coinCount;
-        let coindata2 = await this.userRepository
-          .createQueryBuilder()
-          .update(UserEntity)
-          .set({ whattodocoin: allCount2 })
-          .where('email = :email', { email: email })
-          .execute();
-        console.log(coindata2);
-        return {
-          isSoldSucc: true,
-        };
-      default:
-        return {
-          isCoinSucc: false,
-        };
-    }
   }
 }
