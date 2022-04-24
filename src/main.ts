@@ -8,7 +8,7 @@ import { NestExpressApplication } from '@nestjs/platform-express';
 
 async function bootstrap() { // NestExpressApplication
   const app = await NestFactory.create(AppModule);
-  const hostname = '222.238.250.160'
+  const hostname = '192.168.0.21';
   app.use(cookieParser()); 
   app.enableCors();
   
