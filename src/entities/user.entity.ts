@@ -46,53 +46,32 @@ export class UserEntity {
   
 
   @Column({default: 0})
-  kimdongdongcoin: number;
+  onegradecoin: number;
 
   @Column({default: 0})
-  whattodocoin: number;
+  twograde: number;
+
+  @Column({default: 0})
+  threegrade: number;
+  
+  @Column({default: 0})
+  gameclubcoin: number;
+  
+  @Column({default: 0})
+  cloudclubcoin: number;
+
+  @Column({default: 0})
+  securityclubcoin: number;
+
+  @Column({default: 0})
+  roboticsclubcoin: number;
+
+  @Column({default: 0})
+  networkclubcoin: number;
+
+  @Column({default: 0})
+  healthcoin: number;
 
   @Column({default: 0})
   gsmcoin: number;
-  
-  @Column({default: 0})
-  choigangmincoin: number;
-  
-  @Column({default: 0})
-  gemgaejiyecoin: number;
-
-  @Column({default: 0})
-  hyeonttungcoin: number;
-
-  @Column({default: 0})
-  ijuncoin: number;
-
-  @Column({default: 0})
-  eunseongcoin: number;
-
-  @Column({default: 0})
-  jjunjjunacoin: number;
-
-  @Column({default: 0})
-  sihuncoin: number;
-
-  @Column({default: 0})
-  haembeogseungmincoin: number;
-
-  @Column({default: 0})
-  yusiopeucoin: number;
-
-  @Column({default: 0})
-  geonucoin: number;
-
-  @Column({default: 0})
-  manghaessseonghuncoin: number;
-
-  @Column({default: 0})
-  chanwoocoin: number;
-
-  @Column({default: 0})
-  studentcouncilcoin: number;
-
-  @Column({default: 0})
-  eunyoungcoin: number
 }
